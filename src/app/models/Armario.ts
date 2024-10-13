@@ -12,6 +12,7 @@ export interface IArmario extends Document{
     numero: number,
     ocupado: boolean,
     aluno_id?: Types.ObjectId,
+    data_ocupacao?: Date,
     historico?: Historico[]
 }
 
@@ -31,6 +32,10 @@ const armarioSchema:Schema = new mongoose.Schema({
     },
     aluno_id: {
         type: mongoose.SchemaTypes.ObjectId,
+        required: false
+    },
+    data_ocupacao: {
+        type: Date,
         required: false
     },
     historico: [
