@@ -4,13 +4,13 @@ import info from '../public/assets/info.png';
 
 export default function Header() {
   return (
-    <div className='header'>
-        <Image src={cimol} alt="header"></Image>
+    <div className='header header-armarios'>
+        <Image src={cimol} alt="header" style={{height: "90px", width: "auto"}}></Image>
         <div className="header-selection">
-            <div>Armários</div>
-            <div>Turmas</div>
+            <button className="selection-armarios">Armários</button>
+            <button className="selection-turmas">Turmas</button>
         </div>
-        <Image src={info} alt="header"></Image>
+        <Image src={info} alt="header" style={{height: "60px", width: "auto"}}></Image>
     </div>
   )
 }

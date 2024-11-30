@@ -20,9 +20,11 @@ const Dashbord = () => {
         setProducts(data.products);*/
     }
 
-    return (<div className="container">
-        <button className="btn btn-primary">aaaa</button>
-    </div>)
+    return (
+        <div className="main">
+            aaa
+        </div>
+    )
 }
 
 export default Dashbord;
