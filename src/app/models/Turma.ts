@@ -1,7 +1,8 @@
 import mongoose, { Document } from "mongoose";
 
 export interface Aluno{
-    nome: string
+    nome: string,
+    telefone: string
 }
 
 export interface ITurma extends Document{
@@ -19,6 +20,10 @@ const turmaSchema = new mongoose.Schema({
             nome: {
                 type: String,
                 required: true,
+            },
+            telefone: {
+                type: String,
+                required: false,
             }
         }
     ]
