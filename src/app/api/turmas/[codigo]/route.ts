@@ -135,3 +135,69 @@ export async function DELETE(request: Request, context: any) {
         });
     }
 }
+
+
+// editar código da turma
+export async function PATCH(request: Request, context: any) {
+    await dbConnect();
+
+    try {
+        const { codigo } = context.params;
+        const { novoCodigo } = await request.json();
+        
+        const turma = await Turma.findOne({ codigo });
+
+        if (!turma) {
+            return NextResponse.json({
+                mensagem: "Turma não encontrada."
+            }, {
+                status: 404
+            });
+        }
+
+        turma.codigo = novoCodigo;
+        await turma.save();
+
+        return NextResponse.json({
+            mensagem: "Código da turma atualizado com sucesso.",
+            turma
+        });
+    } catch (error) {
+        return NextResponse.json({
+            mensagem: "Requisição incorreta.",
+            error: error
+        }, {
+            status: 400
+        });
+    }
+}
+
+// deletar turma
+export async function DELETE(request: Request, context: any) {
+    await dbConnect();
+
+    try {
+        const { codigo } = context.params;
+        
+        const turmaRemovida = await Turma.findOneAndDelete({ codigo });
+
+        if (!turmaRemovida) {
+            return NextResponse.json({
+                mensagem: "Turma não encontrada."
+            }, {
+                status: 404
+            });
+        }
+
+        return NextResponse.json({
+            mensagem: "Turma removida com sucesso."
+        });
+    } catch (error) {
+        return NextResponse.json({
+            mensagem: "Requisição incorreta.",
+            error: error
+        }, {
+            status: 400
+        });
+    }
+}
