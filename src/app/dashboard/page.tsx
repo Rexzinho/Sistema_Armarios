@@ -14,17 +14,15 @@ const Dashbord = () => {
         getData();
     }, []);
 
-    const getData = async () => {
+    const getData = async () => {/*
         const resp = await fetch("/api/products");
         const data = await resp.json();
-        setProducts(data.products);
+        setProducts(data.products);*/
     }
 
-    return (<>
-        {products.map(product => (
-            <p key={product.id}>{product.name}</p>
-        ))}
-    </>)
+    return (<div className="container">
+        <button className="btn btn-primary">aaaa</button>
+    </div>)
 }
 
 export default Dashbord;

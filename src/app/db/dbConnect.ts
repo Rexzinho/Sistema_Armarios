@@ -12,5 +12,6 @@ async function dbConnect(){
 }
 
 //teste
+//meu comentário!
 
 export default dbConnect;

@@ -31,7 +31,7 @@ export async function GET(request: Request, context: any){
     }
 }
 
-// adicionar aluno
+// adicionar aluno na turma
 export async function POST(request: Request, context: any){
 
     await dbConnect();
