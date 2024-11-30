@@ -55,3 +55,26 @@ export async function POST(request: Request){
         });
     }
 }
+
+//remover armario
+export async function DELETE(request: Request) {
+    try {
+        const { predio, numero } = await request.json();
+        
+        const armarioRemovido = await Armario.findOneAndDelete({ predio, numero });
+        
+        if (!armarioRemovido) {
+            return NextResponse.json({
+                mensagem: "Armário não encontrado."
+            });
+        }
+
+        return NextResponse.json({
+            mensagem: "Armário removido com sucesso."
+        });
+    } catch (error) {
+        return NextResponse.json({
+            mensagem: "Requisição incorreta."
+        });
+    }
+}
