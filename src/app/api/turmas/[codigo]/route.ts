@@ -93,4 +93,45 @@ export async function POST(request: Request, context: any){
     }
 }
 
-// teste
+//remover aluno da turma
+export async function DELETE(request: Request, context: any) {
+    await dbConnect();
+
+    try {
+        const { codigo } = context.params;
+        const { nome } = await request.json();
+        
+        const turma = await Turma.findOne({ codigo });
+
+        if (!turma) {
+            return NextResponse.json({
+                mensagem: "Turma não encontrada."
+            }, {
+                status: 404
+            });
+        }
+
+        const alunoIndex = turma.alunos.findIndex((aluno: any) => aluno.nome === nome);
+        if (alunoIndex === -1) {
+            return NextResponse.json({
+                mensagem: "Aluno não encontrado na turma."
+            }, {
+                status: 404
+            });
+        }
+
+        turma.alunos.splice(alunoIndex, 1);
+        await turma.save();
+
+        return NextResponse.json({
+            mensagem: "Aluno removido com sucesso.",
+            turma
+        });
+    } catch (error) {
+        return NextResponse.json({
+            mensagem: "Requisição incorreta."
+        }, {
+            status: 400
+        });
+    }
+}
