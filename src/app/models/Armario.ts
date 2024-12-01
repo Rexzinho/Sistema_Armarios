@@ -8,11 +8,13 @@ interface Historico{
 }
 
 export interface IArmario extends Document{
+    _id: Types.ObjectId,
     predio: "A" | "B" | "C" | "D";
     numero: number,
     ocupado: boolean,
     aluno_id?: Types.ObjectId,
     data_ocupacao?: Date,
+    data_prazo?: Date,
     historico?: Historico[]
 }
 
@@ -35,6 +37,10 @@ const armarioSchema:Schema = new mongoose.Schema({
         required: false
     },
     data_ocupacao: {
+        type: Date,
+        required: false
+    },
+    data_prazo: {
         type: Date,
         required: false
     },

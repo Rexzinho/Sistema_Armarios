@@ -32,6 +32,7 @@ export async function POST(request: Request){
                 {
                     inicio: armario.data_ocupacao,
                     termino: Date.now(),
+                    prazo: armario.data_prazo,
                     motivo: body.motivo || null,
                     aluno_id: armario.aluno_id
                 }
@@ -43,7 +44,7 @@ export async function POST(request: Request){
         );
         await Armario.updateOne(
             {_id: body.armario_id}, 
-            {$unset: { data_ocupacao: "", aluno_id: "" }}
+            {$unset: { data_ocupacao: "", data_prazo: "", aluno_id: "" }}
         );
         const armarioAtualizado = await Armario.findById(body.armario_id);
         return NextResponse.json(armarioAtualizado);

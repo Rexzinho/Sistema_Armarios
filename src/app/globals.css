@@ -43,15 +43,27 @@ body{
   gap: 20px;
 }
 .armario{
-  border: 1px solid black;
   width: 80px;
   height: 80px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.3rem;
+  font-weight: 500;
   border-radius: 10px;
   margin-bottom: 15px;
+}
+.armario-livre{
+  border: 2px solid #439C43;
+  color: #439C43;
+}
+.armario-ocupado{
+  background-color:  #275FAF;
+  color: white;
+}
+.armario-irregular{
+  background-color:  #BD0F12;
+  color: white;
 }
 .armarios-select{
   width: 200px;
@@ -81,4 +93,8 @@ body{
 }
 .meu-modal .modal-content{
   padding: 10px;
+}
+.text-dark-blue{
+  color: #275FAF;
+  font-weight: 500;
 }

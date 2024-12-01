@@ -2,6 +2,8 @@
 import { useEffect, useState } from "react";
 import { IArmario } from '../models/Armario';
 import CriarArmario from '@/components/CriarArmario';
+import ArmarioOcupado from '@/components/ArmarioOcupado';
+import mongoose, { Types } from "mongoose";
 import axios from "axios";
 
 type ArmariosPorPredio = {
@@ -13,8 +15,11 @@ const Dashbord = () => {
 
     const [armarios, setArmarios] = useState<ArmariosPorPredio>({})
     const [armariosPredioAtual, setArmariosPredioAtual] = useState<IArmario[] | undefined>([]);
-    const [criarArmarioModal, setCriarArmarioModal] = useState(false);
     const [predioSelecionado, setPredioSelecionado] = useState("A");
+    const [idArmario, setIdArmario] = useState<Types.ObjectId>();
+
+    const [criarArmarioModal, setCriarArmarioModal] = useState(false);
+    const [armarioOcupadoModal, setArmarioOcupadoModal] = useState(false);
 
     useEffect(() => {
         getData();
@@ -58,6 +63,18 @@ const Dashbord = () => {
         }
     }
 
+    const classeArmario = (armario : IArmario) => {
+        
+        if(armario.ocupado){
+            const prazo = armario.data_prazo ? new Date(armario.data_prazo) : null;
+            const hoje = new Date();
+            if(prazo){
+                return hoje > prazo ? "armario armario-irregular" : "armario armario-ocupado"
+            }
+        }
+        return "armario armario-livre";
+    }
+
     return (
         <div className="main">
             {criarArmarioModal && 
@@ -67,6 +84,12 @@ const Dashbord = () => {
                     setArmariosPredioAtual={setArmariosPredioAtual}
                     handlePredioAtual={handlePredioAtual}
                     armarios={armarios} setArmarios={setArmarios}
+                />
+            }
+            {armarioOcupadoModal &&
+                <ArmarioOcupado
+                    closeModal={() => setArmarioOcupadoModal(false)}
+                    idArmario={idArmario}
                 />
             }
             <div className="armarios-header">
@@ -83,8 +106,19 @@ const Dashbord = () => {
             </div>
             <div className="armarios">
                 {armariosPredioAtual?.map(armario => (
-                    <div className="armario">{armario.numero}</div>
+                    <div 
+                        className={classeArmario(armario)}
+                        onClick={() => {
+                            setArmarioOcupadoModal(true);
+                            setIdArmario(armario._id);
+                        }}
+                    >   
+                        {armario.numero}
+                    </div>
                 ))}
+                {armariosPredioAtual?.length === 0 && 
+                    <label className="my-3">Sem armários por aqui...</label>
+                }
             </div>
         </div>
     )

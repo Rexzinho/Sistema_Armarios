@@ -26,13 +26,21 @@ export async function POST(request: Request){
                 status: 400
             });
         }
+        if(!body.prazo){
+            return NextResponse.json({
+                mensagem: "Necessário informar o prazo da ocupação do armário."
+            }, {
+                status: 400
+            });
+        }
         // convertendo objeto mongoose em objeto javascript
         const armarioObj = armario.toObject();
         const novoArmario = {
             ...armarioObj,
             ocupado: true,
             aluno_id: body.aluno_id,
-            data_ocupacao: Date.now()
+            data_ocupacao: Date.now(),
+            data_prazo: body.prazo
         }
         await Armario.updateOne({_id: body.armario_id}, novoArmario);
         const armarioAtualizado = await Armario.findById(body.armario_id);
