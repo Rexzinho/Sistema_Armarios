@@ -2,7 +2,7 @@ import Image from 'next/image';
 import cimol from '../public/assets/cimol.png';
 import info from '../public/assets/info.png';
 
-export default function Header() {
+const Header = () => {
   return (
     <div className='header header-armarios'>
         <Image src={cimol} alt="header" style={{height: "90px", width: "auto"}}></Image>
@@ -14,3 +14,5 @@ export default function Header() {
     </div>
   )
 }
+
+export default Header;
