@@ -17,6 +17,7 @@ const Dashbord = () => {
     const [armariosPredioAtual, setArmariosPredioAtual] = useState<IArmario[] | undefined>([]);
     const [predioSelecionado, setPredioSelecionado] = useState("A");
     const [idArmario, setIdArmario] = useState<Types.ObjectId>();
+    const [armario, setArmario] = useState<IArmario>();
 
     const [criarArmarioModal, setCriarArmarioModal] = useState(false);
     const [armarioOcupadoModal, setArmarioOcupadoModal] = useState(false);
@@ -63,7 +64,7 @@ const Dashbord = () => {
         }
     }
 
-    const classeArmario = (armario : IArmario) => {
+    const classeArmario = (armario : IArmario): string => {
         
         if(armario.ocupado){
             const prazo = armario.data_prazo ? new Date(armario.data_prazo) : null;
@@ -73,6 +74,14 @@ const Dashbord = () => {
             }
         }
         return "armario armario-livre";
+    }
+
+    const handleClick = (armario: IArmario): void => {
+        if(armario.ocupado){
+            setArmarioOcupadoModal(true);
+            setArmario(armario);
+            setIdArmario(armario._id);
+        }
     }
 
     return (
@@ -89,6 +98,7 @@ const Dashbord = () => {
             {armarioOcupadoModal &&
                 <ArmarioOcupado
                     closeModal={() => setArmarioOcupadoModal(false)}
+                    armario={armario}
                     idArmario={idArmario}
                 />
             }
@@ -108,10 +118,7 @@ const Dashbord = () => {
                 {armariosPredioAtual?.map(armario => (
                     <div 
                         className={classeArmario(armario)}
-                        onClick={() => {
-                            setArmarioOcupadoModal(true);
-                            setIdArmario(armario._id);
-                        }}
+                        onClick={() => handleClick(armario)}
                     >   
                         {armario.numero}
                     </div>

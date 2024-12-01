@@ -87,7 +87,7 @@ const CriarArmario = (props: any) => {
                     {message.length > 0 && <label className="text-danger mt-3">{message}</label>}
                 </div>
                 <div className="modal-footer">
-                    <button type="button" className="btn btn-outline-secondary" data-bs-dismiss="modal" onClick={closeModal}>Close</button>
+                    <button type="button" className="btn btn-outline-secondary" data-bs-dismiss="modal" onClick={closeModal}>Fechar</button>
                     <button type="button" className="btn btn-outline-primary" onClick={sendData}>Adicionar armário</button>
                 </div>
                 </div>

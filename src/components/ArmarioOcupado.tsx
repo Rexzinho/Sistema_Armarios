@@ -4,24 +4,7 @@ import { useEffect, useState } from "react";
 
 const CriarArmario = (props: any) => {
 
-    const {closeModal, idArmario} = props;
-    const [armario, setArmario] = useState<IArmario | any>();
-
-    useEffect(() => {
-        getData();
-    }, []);
-    
-    const getData = async () => {
-        try {
-            console.log(idArmario);
-            const resp = await axios.get(`/api/armarios/${idArmario}`);
-            const data = resp.data;
-            setArmario(data);
-            console.log(data);
-        } catch (error) {
-            console.error("Erro ao buscar dados:", error);
-        }
-    };    
+    const {closeModal, idArmario, armario} = props;
 
     const formatarData = (dataString: string): string => {
         const data = new Date(dataString);
@@ -41,7 +24,7 @@ const CriarArmario = (props: any) => {
                     <p><span className="text-dark-blue">Prazo:</span> {formatarData(armario?.data_prazo)}</p>
                 </div>
                 <div className="modal-footer">
-                    <button type="button" className="btn btn-outline-secondary" data-bs-dismiss="modal" onClick={closeModal}>Close</button>
+                    <button type="button" className="btn btn-outline-secondary" data-bs-dismiss="modal" onClick={closeModal}>Fechar</button>
                     <button type="button" className="btn btn-outline-primary">Liberar armário</button>
                 </div>
                 </div>
