@@ -36,10 +36,10 @@ const Historico = (props: any) => {
                     armario.historico.map((item: any) => (
                       <div key={item._id} className="mb-3">
                         <p>
-                          <strong>Início:</strong> {new Date(item.inicio).toLocaleString()}
+                          <strong>Início:</strong> {new Date(item.inicio).toLocaleDateString('pt-BR')}
                         </p>
                         <p>
-                          <strong>Término:</strong> {new Date(item.termino).toLocaleString()}
+                          <strong>Término:</strong> {new Date(item.termino).toLocaleDateString('pt-BR')}
                         </p>
                         <p>
                           <strong>Motivo:</strong> {item.motivo}
