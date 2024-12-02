@@ -1,6 +1,6 @@
 import mongoose, { Document, Schema, Types } from "mongoose";
 
-interface Historico{
+export interface Historico{
     inicio: Date,
     termino: Date,
     motivo?: string,
