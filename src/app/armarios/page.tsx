@@ -99,7 +99,12 @@ const Dashbord = () => {
                 <ArmarioOcupado
                     closeModal={() => setArmarioOcupadoModal(false)}
                     armario={armario}
+                    armarios={armarios}
+                    setArmarios={setArmarios}
                     idArmario={idArmario}
+                    handlePredioAtual={handlePredioAtual}
+                    setArmariosPredioAtual={setArmariosPredioAtual}
+                    predioSelecionado={predioSelecionado}
                 />
             }
             <div className="armarios-header">

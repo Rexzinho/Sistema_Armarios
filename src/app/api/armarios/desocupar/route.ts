@@ -52,7 +52,7 @@ export async function POST(request: Request){
     catch (error) {
         console.log(error);
         return NextResponse.json({
-            mensagem: "Requisição incorreta."
+            mensagem: "Requisição incorreta.",
         })
     }
 
