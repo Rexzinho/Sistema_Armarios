@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { IArmario } from '../models/Armario';
 import CriarArmario from '@/components/CriarArmario';
 import ArmarioOcupado from '@/components/ArmarioOcupado';
+import ArmarioLivre from '@/components/ArmarioLivre';
 import mongoose, { Types } from "mongoose";
 import axios from "axios";
 
@@ -21,6 +22,7 @@ const Dashbord = () => {
 
     const [criarArmarioModal, setCriarArmarioModal] = useState(false);
     const [armarioOcupadoModal, setArmarioOcupadoModal] = useState(false);
+    const [armarioLivreModal, setArmarioLivreModal] = useState(false);
 
     useEffect(() => {
         getData();
@@ -77,11 +79,11 @@ const Dashbord = () => {
     }
 
     const handleClick = (armario: IArmario): void => {
-        if(armario.ocupado){
-            setArmarioOcupadoModal(true);
-            setArmario(armario);
-            setIdArmario(armario._id);
-        }
+        setArmario(armario);
+        setIdArmario(armario._id);
+
+        if(armario.ocupado) setArmarioOcupadoModal(true);
+        else setArmarioLivreModal(true);
     }
 
     return (
@@ -105,6 +107,16 @@ const Dashbord = () => {
                     handlePredioAtual={handlePredioAtual}
                     setArmariosPredioAtual={setArmariosPredioAtual}
                     predioSelecionado={predioSelecionado}
+                />
+            }
+            {armarioLivreModal && 
+                <ArmarioLivre
+                    armario={armario}
+                    armarios={armarios}
+                    predioSelecionado={predioSelecionado}
+                    setArmarios={setArmarios}
+                    setArmariosPredioAtual={setArmariosPredioAtual}
+                    closeModal={() => setArmarioLivreModal(false)}
                 />
             }
             <div className="armarios-header">

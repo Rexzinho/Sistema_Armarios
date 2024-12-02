@@ -119,7 +119,7 @@ const CriarArmario = (props: any) => {
                 <div className="modal-content">
                     <div className="modal-header">
                         <div className="armario-header">
-                            <h5 className="modal-title" style={{ color: "var(--modalColor)" }}>{armario?.numero}</h5>
+                            <h5 className="modal-title" style={{ color: "var(--modalColor)" }}>{armario?.numero} {predioSelecionado}</h5>
                             <h5 className="estado">{estado}</h5>
                         </div>
                         <button
@@ -155,16 +155,10 @@ const CriarArmario = (props: any) => {
                                 >
                                     <option value="">Selecione</option>
                                     <option value="Vencimento do prazo">Vencimento do prazo</option>
-                                    <option value="Mudança de aluno">Mudança de aluno</option>
+                                    <option value="Mudança de aluno">Aluno saiu da escola</option>
+                                    <option value="Aluno foi expulso">Aluno foi expulso</option>
                                     <option value="Outro">Outro</option>
                                 </select>
-                                {motivo === "Outro" && (
-                                    <textarea
-                                        className="form-control mt-3"
-                                        placeholder="Descreva o motivo"
-                                        onChange={(e) => setMotivo(e.target.value)}
-                                    ></textarea>
-                                )}
                             </>
                         )}
                     </div>

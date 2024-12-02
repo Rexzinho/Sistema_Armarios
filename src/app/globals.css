@@ -98,11 +98,11 @@ body{
 .meu-modal .modal-content{
   padding: 10px;
 }
-.modal-coupado{
-  --blue: #275FAF;
-}
 .modal-irregular{
   --modalColor: #BD0F12;
+}
+.modal-livre{
+  --modalColor: #439C43;
 }
 .text-bold{
   color: var(--modalColor);
