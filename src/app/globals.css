@@ -1,3 +1,6 @@
+:root {
+  --modalColor: #275FAF;
+}
 body{
   background-color: #F0F4F9 !important;
 }
@@ -95,7 +98,37 @@ body{
 .meu-modal .modal-content{
   padding: 10px;
 }
-.text-dark-blue{
-  color: #275FAF;
+.modal-coupado{
+  --blue: #275FAF;
+}
+.modal-irregular{
+  --modalColor: #BD0F12;
+}
+.text-bold{
+  color: var(--modalColor);
   font-weight: 500;
+}
+.btn-main{
+  background-color: var(--modalColor);
+  border: 1px solid white;
+  color: white;
+  padding: 6px 16px;
+  border-radius: 5px;
+}
+.btn-main:hover{
+  background-color: transparent;
+  border: 1px solid var(--modalColor);
+  color: var(--modalColor);
+}
+.estado{
+  color: var(--modalColor);
+  border: 1px solid var(--modalColor);
+  padding: 6px 16px;
+  border-radius: 35px;
+  margin: 0;
+}
+.armario-header {
+    display: flex; /* Ativa o Flexbox */
+    align-items: center; /* Centraliza verticalmente os itens */
+    gap: 10px; /* Adiciona um espaçamento fixo entre os itens */
 }
