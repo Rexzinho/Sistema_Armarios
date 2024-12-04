@@ -1,6 +1,7 @@
 import mongoose, { Document } from "mongoose";
 
 export interface Aluno{
+    _id: mongoose.Types.ObjectId | null | undefined;
     nome: string,
     telefone: string
 }

@@ -1,6 +1,4 @@
 "use client";
-import Armarios from "@/components/Armarios";
-import Turmas from "@/components/Turmas";
 import { useState } from "react";
 
 export default function Home() {
