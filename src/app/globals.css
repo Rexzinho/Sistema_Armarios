@@ -76,7 +76,7 @@ body{
   border: none;
   cursor: pointer;
 }
-.armarios-header{
+.armarios-header, .turmas-header{
   display: flex;
   align-items: center;
   margin-bottom: 25px;
@@ -131,4 +131,17 @@ body{
     display: flex; /* Ativa o Flexbox */
     align-items: center; /* Centraliza verticalmente os itens */
     gap: 10px; /* Adiciona um espaçamento fixo entre os itens */
+}
+
+/* SISTEMA DE TURMAS */
+
+.turma{
+  border: 1px solid black;
+  border-radius: 12px;
+  padding: 25px;
+  cursor: pointer;
+}
+.turmas{
+  display: flex;
+  gap: 20px;
 }
