@@ -4,6 +4,7 @@ import { Types } from "mongoose";
 import { useEffect, useState } from "react";
 
 const CriarArmario = (props: any) => {
+    
     const { closeModal, idArmario, armario, setArmariosPredioAtual, setArmarios, armarios, predioSelecionado } = props;
     const [estado, setEstado] = useState("Ocupado");
     const [aluno, setAluno] = useState<any>({});
@@ -178,7 +179,7 @@ const CriarArmario = (props: any) => {
                                     className="btn-main"
                                     onClick={() => setExibirLiberacao(true)}
                                 >
-                                    Liberar armário
+                                    Liberar armário <i className="bi bi-key-fill"></i>
                                 </button>
                             </>
                         ) : (

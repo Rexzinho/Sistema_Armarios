@@ -5,6 +5,7 @@ import CriarArmario from '@/components/CriarArmario';
 import ArmarioOcupado from '@/components/ArmarioOcupado';
 import ArmarioLivre from '@/components/ArmarioLivre';
 import Historico from "@/components/Historico";
+import ExcluirArmario from "@/components/ExcluirArmario";
 import mongoose, { Types } from "mongoose";
 import axios from "axios";
 
@@ -13,6 +14,7 @@ type ArmariosPorPredio = {
 };
 
 const Dashbord = () => {
+
     const [armarios, setArmarios] = useState<ArmariosPorPredio>({});
     const [armariosPredioAtual, setArmariosPredioAtual] = useState<IArmario[] | undefined>([]);
     const [predioSelecionado, setPredioSelecionado] = useState("A");
@@ -22,6 +24,7 @@ const Dashbord = () => {
     const [armarioOcupadoModal, setArmarioOcupadoModal] = useState(false);
     const [armarioLivreModal, setArmarioLivreModal] = useState(false);
     const [historicoModal, setHistoricoModal] = useState(false);
+    const [removerArmarioModal, setRemoverArmarioModal] = useState(false);
 
     // State to control context menu visibility and position
     const [contextMenu, setContextMenu] = useState<{
@@ -154,6 +157,16 @@ const Dashbord = () => {
                     predioSelecionado={predioSelecionado}
                 />
             )}
+            {removerArmarioModal && (
+                <ExcluirArmario
+                    closeModal={() => setRemoverArmarioModal(false)}
+                    numero={armario?.numero}
+                    armarios={armarios}
+                    setArmarios={setArmarios}
+                    setArmariosPredioAtual={setArmariosPredioAtual}
+                    predioSelecionado={predioSelecionado}
+                />
+            )}
 
             {contextMenu.visible && (
                 <div
@@ -166,11 +179,27 @@ const Dashbord = () => {
                     }}
                     className="card shadow"
                 >
-                    <div className="card-body" style={{cursor: "pointer"}} onClick={() => {
-                        setContextMenu({ visible: false, x: 0, y: 0 });
-                        setHistoricoModal(true);
-                    }}>
-                        Histórico
+                    <div className="card" style={{cursor: "pointer"}}>
+                        <ul className="list-group list-group-flush">
+                            <li 
+                                className="list-group-item"
+                                onClick={() => {
+                                    setContextMenu({ visible: false, x: 0, y: 0 });
+                                    setHistoricoModal(true);
+                                }}
+                            >
+                                Histórico <i className="bi bi-clock"></i>
+                            </li>
+                            <li 
+                                className="list-group-item text-danger"
+                                onClick={() => {
+                                    setContextMenu({ visible: false, x: 0, y: 0 });
+                                    setRemoverArmarioModal(true);
+                                }}
+                            >
+                                Remover <i className="bi bi-trash"></i>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             )}

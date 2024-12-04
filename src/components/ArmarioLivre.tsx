@@ -180,7 +180,7 @@ const ArmarioLivre = (props: any) => {
               Fechar
             </button>
             <button type="button" className="btn-main" onClick={ocuparArmario}>
-              Ocupar Armário
+              Ocupar Armário <i className="bi bi-lock-fill"></i>
             </button>
           </div>
         </div>
