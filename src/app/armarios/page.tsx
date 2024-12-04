@@ -6,7 +6,7 @@ import ArmarioOcupado from '@/components/ArmarioOcupado';
 import ArmarioLivre from '@/components/ArmarioLivre';
 import Historico from "@/components/Historico";
 import ExcluirArmario from "@/components/ExcluirArmario";
-import mongoose, { Types } from "mongoose";
+import { Types } from "mongoose";
 import axios from "axios";
 
 type ArmariosPorPredio = {

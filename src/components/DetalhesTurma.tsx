@@ -1,6 +1,6 @@
 import axios from "axios";
 import { use, useState } from "react";
-import { ITurma } from "../models/Turma";
+import { ITurma } from "@/app/models/Turma";
 import CriarAluno from "./CriarAluno";
 import { useEffect } from "react";
 
@@ -121,7 +121,7 @@ const DetalhesTurma = ({
             </button>
             <h5 className="mt-4">Alunos</h5>
             {alunos.map((aluno) => (
-              <div key={aluno._id} className="aluno">
+              <div key={String(aluno._id)} className="aluno">
                 <input
                   type="text"
                   className="form-control"
@@ -151,14 +151,14 @@ const DetalhesTurma = ({
                 <button
                   className="btn btn-outline-primary mt-2"
                   onClick={() =>
-                    updateAluno(aluno._id, aluno.nome, aluno.telefone)
+                    aluno._id && updateAluno(aluno._id.toString(), aluno.nome, aluno.telefone)
                   }
                 >
                   Atualizar Aluno
                 </button>
                 <button
                   className="btn btn-outline-danger mt-2"
-                  onClick={() => removeAluno(aluno._id)}
+                  onClick={() => aluno._id && removeAluno(aluno._id.toString())}
                 >
                   Remover Aluno
                 </button>
